@@ -1,0 +1,40 @@
+class Car:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
+
+    def start_engine(self):
+        print(f"{self.brand} {self.model}: Engine started.")
+
+    def accelerate(self):
+        print(f"{self.brand} {self.model}: Accelerating.")
+
+    def brake(self):
+        print(f"{self.brand} {self.model}: Braking.")
+
+
+class CarController:
+    def __init__(self, car):
+        self.car = car
+
+    def start_car(self):
+        self.car.start_engine()
+
+    def drive(self):
+        self.car.accelerate()
+
+    def stop_car(self):
+        self.car.brake()
+
+
+def main():
+    my_car = Car("Toyota", "Corolla")
+    my_controller = CarController(my_car)
+
+    my_controller.start_car()
+    my_controller.drive()
+    my_controller.stop_car()
+
+
+if __name__ == "__main__":
+    main()
