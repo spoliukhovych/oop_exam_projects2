@@ -1,0 +1,107 @@
+# Патерн Decorator
+
+class Component:
+    def operation(self):
+        pass
+
+class ConcreteComponent(Component):
+    def operation(self):
+        print("Виконується операція ConcreteComponent")
+
+class Decorator(Component):
+    def __init__(self, component):
+        self.component = component
+
+    def operation(self):
+        self.component.operation()
+
+class ConcreteDecoratorA(Decorator):
+    def operation(self):
+        super().operation()
+        self.additional_operation()
+
+    def additional_operation(self):
+        print("Виконується додаткова операція в ConcreteDecoratorA")
+
+class ConcreteDecoratorB(Decorator):
+    def operation(self):
+        super().operation()
+        self.additional_operation()
+
+    def additional_operation(self):
+        print("Виконується додаткова операція в ConcreteDecoratorB")
+
+
+# Патерн Strategy
+
+class Strategy:
+    def do_operation(self):
+        pass
+
+class ConcreteStrategyA(Strategy):
+    def do_operation(self):
+        print("Виконується операція за стратегією A")
+
+class ConcreteStrategyB(Strategy):
+    def do_operation(self):
+        print("Виконується операція за стратегією B")
+
+
+# Патерн Template Method
+
+class AbstractClass:
+    def template_method(self):
+        self.base_operation()
+        self.step1()
+        self.step2()
+
+    def base_operation(self):
+        print("Виконується базова операція в AbstractClass")
+
+    def step1(self):
+        pass
+
+    def step2(self):
+        pass
+
+class ConcreteClassA(AbstractClass):
+    def step1(self):
+        print("Виконується крок 1 в ConcreteClassA")
+
+    def step2(self):
+        print("Виконується крок 2 в ConcreteClassA")
+
+class ConcreteClassB(AbstractClass):
+    def step1(self):
+        print("Виконується крок 1 в ConcreteClassB")
+
+    def step2(self):
+        print("Виконується крок 2 в ConcreteClassB")
+
+
+# Використання патернів
+
+def main():
+    # Використання патерну Decorator
+    component = ConcreteComponent()
+    decorated_component = ConcreteDecoratorB(ConcreteDecoratorA(component))
+    decorated_component.operation()
+    print()
+
+    # Використання патерну Strategy
+    strategy_a = ConcreteStrategyA()
+    strategy_b = ConcreteStrategyB()
+
+    strategy_a.do_operation()
+    strategy_b.do_operation()
+    print()
+
+    # Використання патерну Template Method
+    concrete_class_a = ConcreteClassA()
+    concrete_class_b = ConcreteClassB()
+
+    concrete_class_a.template_method()
+    concrete_class_b.template_method()
+
+if __name__ == '__main__':
+    main()
